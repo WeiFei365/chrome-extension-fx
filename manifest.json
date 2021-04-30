@@ -1,0 +1,20 @@
+{
+  "manifest_version": 3,
+
+  "name": "FX网页裁剪",
+  "description": "用于裁剪网页，去除任意不需要的元素",
+  "version": "1.1",
+
+  "icons": {
+    "128": "icon.png"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "FX Element Cut"
+  },
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "storage"
+  ]
+}
