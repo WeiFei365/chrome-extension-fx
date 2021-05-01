@@ -7,10 +7,20 @@
 <html lang="zh">
   <head>
     <title>Element Cut</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <style type="text/css">
       body {
-        margin: 10px;
+        padding: 0 10px;
+        text-align: left;
         white-space: nowrap;
+      }
+      body em {
+        color: #ffc000;
+        font-style: normal;
+      }
+      body ul {
+        line-height: 20px;
+        color: rgba(0, 0, 0, 0.65);
       }
 
       h1 {
@@ -34,11 +44,22 @@
   </head>
 
   <body>
-    <h1>Actions:</h1>
+    <h1>菜单：</h1>
     <div id="container">
-      <button id="_cut">
-        Inject scripts
-      </button>
+      <div>
+        <button id="_cut">开启编辑网页</button>
+        <ul>
+          提示：
+          <li>1、滚动到页面底部，保证所有的图片、视频、文字都正常显示；</li>
+          <li>2、点击「开启编辑网页」按钮，注入脚本；</li>
+          <li>3、在网页的空白处点击一下；</li>
+          <li>4、然后鼠标在网页的内容间来回滑动，会出现<em>橙色</em>的边框；</li>
+          <li>5、按键盘上的「回退键」或「删除键」，即可删除带有<em>橙色</em>边框的内容；</li>
+          <li>6、操作完成以后，按键盘上的「P」键，停止编辑；</li>
+          <li>7、继续编辑，按键盘上的「A」键；</li>
+          <li>8、导出网页成PDF，鼠标右键-->打印，或快捷键：先按 Ctrl 再按 P；</li>
+        </ul>
+      </div>
     </div>
   </body>
 </html>

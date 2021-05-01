@@ -1,10 +1,11 @@
 (() => {
   console.log('scripts done');
-  window.alert('脚本已加载！请滚动到页面底部，保证所有图片、视频等都显示后，再进行操作');
+  window.alert('脚本已加载！现在可以编辑网页啦~');
   
   // 当前处于的 DOM 节点
   let target = null;
   let targetStyle = null;
+  let isStop = false;
   
   function clear() {
     if (!target) {
@@ -25,7 +26,7 @@
   }
   
   document.body.addEventListener('mousemove', ele => {
-    if (target === ele.target) {
+    if (target === ele.target || isStop) {
       return;
     }
     try {
@@ -46,8 +47,15 @@
     if (!target) {
       return;
     }
+    if (evt && evt.keyCode === 65) {
+      // A键
+      isStop = false;
+      return;
+    }
     if (evt && evt.keyCode === 80) {
+      // P键
       clear();
+      isStop = true;
       return;
     }
     if (!evt || [8, 46].indexOf(evt.keyCode) === -1) {
