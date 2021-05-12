@@ -56,12 +56,19 @@ function getCurrentTabUrl(callback) {
  *
  * @param {number} tabId The new background color.
  */
-function onInjectScripts(tabId) {
+function onInjectScripts(tabId, action) {
   // See https://developer.chrome.com/extensions/tabs#method-executeScript.
   // chrome.tabs.executeScript allows us to programmatically inject JavaScript
   // into a page. Since we omit the optional first argument "tabId", the script
   // is inserted into the active tab of the current window, which serves as the
   // default.
+  if (action === '_fullscreen') {
+    chrome.scripting.executeScript({
+      target: { tabId },
+      files: ['full-screen.js'],
+    }, () => 0);
+    return;
+  }
   chrome.scripting.executeScript({
     target: { tabId },
     files: ['element-cut.js'],
@@ -80,6 +87,9 @@ document.addEventListener('DOMContentLoaded', () => {
   getCurrentTabUrl((tabId) => {
     document.getElementById('_cut').addEventListener('click', () => {
       onInjectScripts(tabId);
+    });
+    document.getElementById('_fullscreen').addEventListener('click', () => {
+      onInjectScripts(tabId, '_fullscreen');
     });
   });
 });
