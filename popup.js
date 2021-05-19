@@ -69,6 +69,13 @@ function onInjectScripts(tabId, action) {
     }, () => 0);
     return;
   }
+  if (action === '_copy') {
+    chrome.scripting.executeScript({
+      target: { tabId },
+      files: ['copy.js'],
+    }, () => 0);
+    return;
+  }
   chrome.scripting.executeScript({
     target: { tabId },
     files: ['element-cut.js'],
@@ -85,11 +92,37 @@ function onInjectScripts(tabId, action) {
 // user devices.
 document.addEventListener('DOMContentLoaded', () => {
   getCurrentTabUrl((tabId) => {
+    const onTips = (evt) => {
+      const { target } = evt || {};
+      if (!target || !target.parentNode || !target.parentNode.classList) {
+        return;
+      }
+      let parent = target;
+      while (parent && !parent.classList.contains('tips')) {
+        parent = parent.parentNode;
+      }
+      if (!parent) {
+        return;
+      }
+      if (parent.classList.contains('true')) {
+        parent.classList.remove('true');
+      } else {
+        parent.classList.add('true');
+      }
+    };
     document.getElementById('_cut').addEventListener('click', () => {
       onInjectScripts(tabId);
     });
+    document.getElementById('_cut_switch').addEventListener('click', onTips);
+    // 全屏
     document.getElementById('_fullscreen').addEventListener('click', () => {
       onInjectScripts(tabId, '_fullscreen');
     });
+    document.getElementById('_fullscreen_switch').addEventListener('click', onTips);
+    // 复制文字
+    document.getElementById('_copy').addEventListener('click', () => {
+      onInjectScripts(tabId, '_copy');
+    });
+    document.getElementById('_copy_switch').addEventListener('click', onTips);
   });
 });

@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
 
-  "name": "FX网页裁剪",
-  "description": "用于裁剪网页，去除任意不需要的元素",
+  "name": "FX网页小公举",
+  "description": "用于裁剪网页、全屏打印图片、文字拷贝等",
   "version": "1.1",
 
   "icons": {

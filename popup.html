@@ -6,7 +6,7 @@
  -->
 <html lang="zh">
   <head>
-    <title>Element Cut</title>
+    <title>FX网页小公举</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <style type="text/css">
       body {
@@ -33,6 +33,28 @@
         justify-content: space-between;
         flex-wrap: wrap;
       }
+      #container .tips > span {
+        cursor: pointer;
+        font-weight: bold;
+      }
+      #container .tips > span:hover {
+        color: blue;
+      }
+      #container .tips > span em {
+        display: none;
+      }
+      #container .tips:not([class~=true]) > span em.true {
+        display: inline;
+      }
+      #container .tips.true > span em.false {
+        display: inline;
+      }
+      #container .tips > li {
+        display: none;
+      }
+      #container .tips.true > li {
+        display: list-item;
+      }
     </style>
 
     <!--
@@ -49,8 +71,10 @@
     <div id="container">
       <div>
         <button id="_cut">开启编辑网页</button>
-        <ul>
-          提示：
+        <ul class="tips">
+          <span id="_cut_switch">
+            提示（点击<em class="true">显示</em><em class="false">隐藏</em>）：
+          </span>
           <li>1、滚动到页面底部，保证所有的图片、视频、文字都正常显示；</li>
           <li>2、点击「开启编辑网页」按钮，注入脚本；</li>
           <li>3、在网页的空白处点击一下；</li>
@@ -63,11 +87,24 @@
       </div>
       <div>
         <button id="_fullscreen">设置图片全屏</button>
-        <ul>
-          提示：
+        <ul class="tips">
+          <span id="_fullscreen_switch">
+            提示（点击<em class="true">显示</em><em class="false">隐藏</em>）：
+          </span>
           <li>1、“设置图片全屏”是为了打印或导出「图片」为PDF时，图片占满整个PDF，不会有白边；</li>
           <li>2、如果导出PDF预览时，依然有“白边”，可以在预览右侧的“更多设置”里将「边距」设为“无”；</li>
           <li>3、使用方法：将任意图片拖放到浏览器里--->点击按钮“设置图片全屏”--->打印；</li>
+        </ul>
+      </div>
+      <div>
+        <button id="_copy">随意复制文字</button>
+        <ul class="tips">
+          <span id="_copy_switch">
+            提示（点击<em class="true">显示</em><em class="false">隐藏</em>）：
+          </span>
+          <li>1、“设置图片全屏”是为了复制百度文库、知乎问答等不支持Ctrl+C方式的文字；</li>
+          <li>2、开启「随意复制文字」后，鼠标在文字间滑动，会出现<em>橙色</em>的边框；</li>
+          <li>3、按键盘上的「A」键，即可复制高亮的文字；</li>
         </ul>
       </div>
     </div>
