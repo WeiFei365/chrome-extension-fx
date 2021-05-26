@@ -5,6 +5,8 @@
   // 当前处于的 DOM 节点
   let target = null;
   let targetStyle = null;
+  // 所有被 display=none 的元素，用于撤销
+  const oldList = [];
   let isStop = false;
   
   function clear() {
@@ -58,6 +60,50 @@
       isStop = true;
       return;
     }
+    if (evt && evt.keyCode === 81) {
+      // Q键
+      try {
+        clear();
+        oldList.push(target);
+        target.style.display = 'none';
+      } catch (err) {
+        console.error(68, err);
+      }
+      return;
+    }
+    if (evt && evt.keyCode === 90) {
+      // Z键
+      console.log(77, oldList);
+      try {
+        const el = oldList.pop();
+        if (el) {
+          el.style.display = '';
+        }
+      } catch (err) {
+        console.error(68, err);
+      }
+      return;
+    }
+    if (evt && evt.keyCode === 87) {
+      // W键
+      try {
+        target.style.width = '100%';
+      } catch (err) {
+        console.error(68, err);
+      }
+      return;
+    }
+    if (evt && evt.keyCode === 69) {
+      // E键
+      try {
+        target.style.background = 'none';
+        target.style.backgroundColor = 'none';
+        target.style.backgroundImage = 'none';
+      } catch (err) {
+        console.error(68, err);
+      }
+      return;
+    }
     if (!evt || [8, 46].indexOf(evt.keyCode) === -1) {
       return;
     }
@@ -68,4 +114,14 @@
       console.error(37, err);
     }
   });
+  // 打印样式，避免图片截断
+  // try {
+  //   const style = document.createElement('style');
+  //   style.type = 'text/css';
+  //   const textNode = document.createTextNode('@media print { img { break-inside: avoid; } }');
+  //   style.appendChild(textNode);
+  //   document.head.appendChild(style);
+  // } catch (error) {
+  //   // error
+  // }
 })();
